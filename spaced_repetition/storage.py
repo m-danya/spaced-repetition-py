@@ -18,7 +18,6 @@ class Config:
                 config.read_file(f)
         else:
             # set default settings
-            print('Warning: Creating a default config, because it does not exist')
             default_data_folder = Path(__file__).parent / 'data'
             default_data_folder.mkdir(exist_ok=True, parents=True)
 
