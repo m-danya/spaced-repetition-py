@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+run.sh
+cd-to-pkg.sh
+
+spaced_repetition/data
+spaced_repetition/config.ini
+
 # C extensions
 *.so
 

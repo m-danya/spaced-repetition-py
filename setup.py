@@ -21,4 +21,5 @@ setup(
     name='spaced_repetition',
     url='https://github.com/m-danya/spaced-repetition-py',
     version='0.1.0',
+    include_package_data=True,
 )

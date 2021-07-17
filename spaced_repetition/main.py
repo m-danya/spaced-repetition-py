@@ -1,12 +1,11 @@
 import argparse
 import sys
+from spaced_repetition import storage
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('_', nargs='*')
-    args = parser.parse_args()
-    print('hi!')
+    parser = argparse.ArgumentParser(description='CLI for Spaced Repetition System')
+    args = parser.parse_args()    
     return 0
 
 
