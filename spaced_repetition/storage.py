@@ -1,5 +1,8 @@
 from pathlib import Path
 import configparser
+from datetime import date
+from dataclasses import dataclass
+import json
 
 
 class Config:
@@ -34,7 +37,34 @@ class Config:
 
         if not self.settings['cards_path'].exists():
             print('Warning: Creating an empty data folder, because it does not exist')
-            self.settings['cards_path'].mkdir(exist_ok=True, parents=True)
-        print('data folder: ', self.settings['cards_path'])
-        
+            self.settings['cards_path'].mkdir(exist_ok=True, parents=True)    
+
+class Card:
+    data = {}
+    def __init__(self, data):
+        self.data = data
+
+class CardsStorage:
+    cards = []
+
+    def add_card(self, card):
+        self.cards.append(card)
+        self.save_to_file()
+    
+    
+    def save_to_file(self):
+        cards_file = config.settings['cards_path'] / 'cards.json'
+        with open(cards_file, 'w') as f:
+            json.dump([x.data for x in self.cards], f, default=str)
+
+
 config = Config()
+cards = CardsStorage()
+
+cards.add_card(Card({
+    'front': 'front content',
+    'back': 'back content',
+    'level': 1,
+    'date_wrong': date.today(),
+    'date_next': date.today()
+}))
