@@ -9,6 +9,9 @@ cd-to-pkg.sh
 spaced_repetition/data
 spaced_repetition/config.ini
 
+etc/*.csv
+etc/*.json
+
 # C extensions
 *.so
 
