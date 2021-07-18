@@ -9,6 +9,7 @@ Development progress: 75%
 - This program is open-source
 - It stores data in straight-line JSON format
 - `cards.json` file can be stored anywhere (you can configure it in the Settings). For example, you can use Dropbox to sync your cards across the devices
+- This tool can be used on both Linux and Windows (and maybe on a Mac too)
 
 ## Installation
 ```bash
