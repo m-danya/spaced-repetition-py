@@ -1,5 +1,5 @@
-"""Top-level package for Python Boilerplate."""
+""" My implementation of a popular method aimed at learning things effectively"""
 
-__author__ = """Audrey Roy Greenfeld"""
-__email__ = 'audreyr@example.com'
-__version__ = '0.1.0'
+__author__ = """Danila Mikhaltsov"""
+__email__ = 'danila-mikh@ya.ru'
+__version__ = '0.2.0'

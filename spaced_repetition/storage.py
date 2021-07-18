@@ -9,7 +9,7 @@ class Config:
     settings = { }
 
     def __init__(self):
-        self.read_from_file()
+        pass
     
     def read_from_file(self):
         config = configparser.ConfigParser()
@@ -47,6 +47,9 @@ class Card:
 class CardsStorage:
     cards = []
 
+    def __init__(self):
+        pass
+
     def add_card(self, card):
         self.cards.append(card)
         self.save_to_file()
@@ -61,10 +64,10 @@ class CardsStorage:
 config = Config()
 cards = CardsStorage()
 
-cards.add_card(Card({
-    'front': 'front content',
-    'back': 'back content',
-    'level': 1,
-    'date_wrong': date.today(),
-    'date_next': date.today()
-}))
+# cards.add_card(Card({
+#     'front': 'front content',
+#     'back': 'back content',
+#     'level': 1,
+#     'date_wrong': date.today(),
+#     'date_next': date.today()
+# }))
