@@ -29,30 +29,27 @@ class Config:
     settings = {}
 
     def __init__(self):
+        self.config = configparser.ConfigParser()
+        self.config_file = Path(__file__).parent / 'config.ini'
         pass
 
     def load_from_file(self):
-        config = configparser.ConfigParser()
-        config_file = Path(__file__).parent / 'config.ini'
 
-        if config_file.exists():
+        if self.config_file.exists():
             # use existing settings
-            with open(config_file, "r") as f:
-                config.read_file(f)
+            with open(self.config_file, "r") as f:
+                self.config.read_file(f)
         else:
             # set default settings
             default_data_folder = Path(__file__).parent / 'data'
             default_data_folder.mkdir(exist_ok=True, parents=True)
 
-            config.add_section("Settings")
-            config["Settings"]["cards_path"] = str(default_data_folder)
-
-            with open(config_file, "w") as f:
-                config.write(f)
+            self.config.add_section("Settings")
+            self.change_cards_path_and_save(str(default_data_folder))
 
         # move read settings to self.settings
         self.settings = {
-            "cards_path": Path(config["Settings"]["cards_path"])
+            "cards_path": Path(self.config["Settings"]["cards_path"])
         }
 
         if not self.settings['cards_path'].exists():
@@ -61,6 +58,13 @@ class Config:
         cards_file = self.settings['cards_path'] / "cards.json"
         if not cards_file.exists():
             cards_file.touch()
+    
+    def change_cards_path_and_save(self, new_path):
+        self.config["Settings"]["cards_path"] = new_path
+        self.settings["cards_path"] = Path(new_path)
+
+        with open(self.config_file, "w") as f:
+            self.config.write(f)
 
 
 class Card:
@@ -131,10 +135,6 @@ class CardsStorage:
                 self.today_cards_indexes.append(
                     len(self.all_cards) - 1)  # save index of this card
         random.shuffle(self.today_cards_indexes)
-
-    def print_all_cards(self):
-        for c in self.all_cards:
-            print(c.data)
 
     def pop_idx(self):
         return self.today_cards_indexes.pop()

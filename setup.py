@@ -20,6 +20,6 @@ setup(
     keywords='spaced_repetition',
     name='spaced_repetition',
     url='https://github.com/m-danya/spaced-repetition-py',
-    version='0.6.0',
+    version='0.9.9',
     include_package_data=True,
 )

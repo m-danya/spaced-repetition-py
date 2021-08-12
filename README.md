@@ -23,3 +23,5 @@ spaced-repetition
 
 ## Todo
 - changing and deleting words option
+- "added words today" counter
+- back-to-front asking mode

@@ -6,6 +6,7 @@ import math
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+
 EOF_HOTKEY = 'ctrl+Z' if os.name == 'nt' else 'ctrl+D'
 
 
@@ -17,6 +18,7 @@ def main_loop():
         print('1. Answer cards for today ('
               + str(len(storage.cards.today_cards_indexes)) + ' left)')
         print(f'2. Add a new card')
+        print(f'3. Watch my cards')
         print()
         print('9. Settings')
         print('0. Exit')
@@ -35,6 +37,8 @@ def main_loop():
             answer_cards()
         if run == 2:
             add_a_new_card()
+        if run == 3:
+            watch_my_cards()
         if run == 9:
             settings()
 
@@ -119,13 +123,45 @@ def add_a_new_card():
         })
         try:
             print()
-            print('Card added. Press Enter to continue or ' + EOF_HOTKEY + ' to exit')
+            print('Card added. Press Enter to continue or ' +
+                  EOF_HOTKEY + ' to exit')
             input()
         except:  # KeyboradInterrupt
             break
 
 
-
 def settings():
-    input('TBD.. ')
-    pass
+    clear_screen()
+    print('1. Change the `cards.json` location')
+    print()
+    print('0. Exit')
+    print()
+    try:
+        choice = input('')
+    except:  # KeyboradInterrupt
+        pass
+    if choice == '1':
+        try:
+            new_path = input('Type the new path (it must be absolute): ')
+            storage.config.change_cards_path_and_save(new_path)
+            storage.config.load_from_file()
+            storage.cards.load_from_file()
+        except:  # KeyboradInterrupt
+            pass
+
+
+def watch_my_cards():
+    clear_screen()
+    print('You have ' +
+            f'{len(storage.CardsStorage.all_cards)} cards in your system, wow!')
+    print()
+    for i, card in enumerate(storage.cards.all_cards):
+        print(f"{i + 1}) {card.data['front']}")
+    try:
+        print()
+        print('That\'s all. Press Enter to exit')
+        input()
+    except:  # KeyboradInterrupt
+        pass
+
+    
