@@ -3,12 +3,11 @@ My implementation of a [popular method](https://en.wikipedia.org/wiki/Spaced_rep
 
 <img src="etc/srs.gif" alt="usage example"  />
 
-Development progress: 75%
 
 ## Advantages
 - This program is open-source
 - It stores data in straight-line JSON format
-- `cards.json` file can be stored anywhere (you can configure it in the Settings). For example, you can use Dropbox to sync your cards across the devices
+- The `cards.json` file can be stored anywhere (you can configure it in the Settings). For example, you can use Dropbox to sync your cards across the devices
 - This tool can be used on both Linux and Windows (and maybe on a Mac too)
 
 ## Installation
@@ -22,4 +21,5 @@ pip install .
 spaced-repetition
 ```
 
-
+## Todo
+- changing and deleting words option
