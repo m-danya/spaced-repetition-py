@@ -13,6 +13,7 @@ My implementation of a [popular method](https://en.wikipedia.org/wiki/Spaced_rep
 ## Installation
 ```bash
 git clone https://github.com/m-danya/spaced-repetition-py
+cd spaced-repetition-py
 pip install .
 ```
 
