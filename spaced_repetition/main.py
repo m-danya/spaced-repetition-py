@@ -9,7 +9,6 @@ def main():
     args = parser.parse_args()  
     storage.config.load_from_file()
     storage.cards.load_from_file()
-    # storage.cards.print_all_cards()
     cli.main_loop()
     return
 

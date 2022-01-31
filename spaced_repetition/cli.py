@@ -52,8 +52,9 @@ def print_progress_bar(a, x):
 
 def answer_cards():
     was = len(storage.cards.today_cards_indexes)
-    now = was
     correct = 0
+    incorrect = 0
+    deleted = 0
     for now in range(was, 0, -1):
         clear_screen()
         print_progress_bar(was - now, was)
@@ -74,7 +75,7 @@ def answer_cards():
         print()
         print(card.data['back'])
         try:
-            answer = input('(enter: accept, d: decline, smth else: skip): ')
+            answer = input('(enter: accept, d: decline, x: remove permanently, smth else: skip): ')
         except:  # KeyboradInterrupt
             break
         if (answer == ''):
@@ -82,6 +83,10 @@ def answer_cards():
             correct += 1
         elif (answer == 'd'):
             card.check_as_wrong()
+            incorrect += 1
+        elif (answer == 'x'):
+            card.mark_for_removal()
+            deleted += 1
         else:
             continue
     clear_screen()
@@ -89,8 +94,25 @@ def answer_cards():
     print()
     print("That's all for today!")
     if was > 0:
-        print(f'Cards answered correctly: {correct}/{was}')
+        skipped = was - (correct + incorrect + deleted)
+        skip_msg = ' ('
+        if deleted > 0:
+            skip_msg += f'+ {deleted} deleted'
+            if skipped > 0:
+                skip_msg += ', '
+        if skipped > 0:
+            skip_msg += f'+ {skipped} skipped'
+        skip_msg += ')'
+        if skip_msg == ' ()': 
+            skip_msg = ''
+        was = was - (skipped + deleted)
+        print(f'Cards answered correctly: {correct}/{was}' + skip_msg)
     print()
+
+    storage.cards.remove_unwanted_cards()
+    storage.cards.save_to_file()
+
+    storage.cards.get_cards_for_today()
 
     try:
         input('Press enter to return to the menu ')
