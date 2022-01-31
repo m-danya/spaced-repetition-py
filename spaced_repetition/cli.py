@@ -47,7 +47,7 @@ def print_progress_bar(a, x):
     # a/x is completed
     sharp_count = math.ceil(25 * a / x)
     spaces_count = 25 - sharp_count
-    print('[' + '#' * sharp_count + ' ' * spaces_count + ']')
+    print('[' + '#' * sharp_count + ' ' * spaces_count + ']' + f' ({a}/{x})')
 
 
 def answer_cards():
@@ -90,7 +90,7 @@ def answer_cards():
         else:
             continue
     clear_screen()
-    print_progress_bar(1, 1)
+    print_progress_bar(was, was)
     print()
     print("That's all for today!")
     if was > 0:
