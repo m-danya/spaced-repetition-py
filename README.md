@@ -27,3 +27,6 @@ spaced-repetition
 - back-to-front asking mode
 - changing cards content
 - fix the imports
+
+## More
+[Статья в блоге](https://m-danya.web.app/posts/spaced-repetition-system/)

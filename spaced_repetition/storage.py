@@ -24,7 +24,6 @@ SRS_LEVEL_TO_DAYS = {
 
 TODAY = date.today()
 
-
 class Config:
     settings = {}
 
@@ -83,7 +82,7 @@ class Card:
             timedelta(days=add_days)
 
     def check_as_wrong(self):
-        self.data['date_wrong'] = date.today()
+        self.data['date_wrong'] = TODAY
         self.data['level'] = 2
         self.recalculate_next_date()
 
