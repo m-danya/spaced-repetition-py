@@ -45,6 +45,9 @@ def main_loop():
 
 def print_progress_bar(a, x):
     # a/x is completed
+    if x == 0:
+        print()
+        return
     sharp_count = math.ceil(25 * a / x)
     spaces_count = 25 - sharp_count
     print('[' + '#' * sharp_count + ' ' * spaces_count + ']' + f' ({a}/{x})')
